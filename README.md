@@ -38,6 +38,7 @@ The port information corresponding to the pwn program is also inside  flags.txt.
 ## Update
 
 2018.09.17 version v1
+
 2018.09.23 version v2：Use the catflag program instead of /bin/sh, which is more secure
 
 ## Reference

@@ -32,6 +32,7 @@ flag会由`initialize.py`生成，并写入flags.txt中，并且pwn程序对应�
 ## 更新
 
 2018.09.17 version v1
+
 2018.09.23 version v2：使用catflag程序代替/bin/sh，这会更加安全
 
 ## 参考
