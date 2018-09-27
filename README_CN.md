@@ -11,18 +11,12 @@ curl -s https://get.docker.com/ | sh
 apt install docker-compose
 ```
 
-## 配置
-
-将你的pwn二进制程序放到`./bin` 目录（注意文件名不要含有特殊字符，因为后面会这个文件名创建用户名）
-
-监听端口从10000开始，每多一个pwn就加1，你可以在`config.py`中修改起始监听端口
-
-## 启动
+## 如何使用
 
 ```
-python initialize.py
-# 请用root用户启动
-docker-compose up --build -d
+1. 将你的pwn二进制程序放到./bin 目录（注意文件名不要含有特殊字符，因为后面会这个文件名创建用户名）
+2. python initialize.py
+3. docker-compose up --build -d 	# 请用root用户启动
 ```
 
 ## 注意

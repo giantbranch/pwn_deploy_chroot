@@ -15,18 +15,12 @@ curl -s https://get.docker.com/ | sh
 apt install docker-compose
 ```
 
-## Configuration
-
-Put your pwn program to ./bin （**Note that the filename should not contain special characters.**）
-
-Listen port start from 10000, you can change in config.py
-
-## Run
+## How to use
 
 ```
-python initialize.py
-# please run as root
-docker-compose up --build -d
+1. Put your pwn program to ./bin （Note that the filename should not contain special characters.）
+2. python initialize.py
+3. docker-compose up --build -d     # please run as root
 ```
 
 ## Attention
