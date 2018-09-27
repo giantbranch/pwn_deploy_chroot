@@ -21,7 +21,9 @@ apt install docker-compose
 
 ## 注意
 
-flag会由`initialize.py`生成，并写入flags.txt中，并且pwn程序对应的端口信息也在里面
+flag会由`initialize.py`生成，并写入flags.txt中
+
+而pwn程序对应的端口信息在ports.txt中
 
 ## 更新
 
