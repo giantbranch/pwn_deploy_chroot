@@ -8,6 +8,7 @@
 from config import *
 import os
 import uuid
+import json
 
 def getFileList():
     filelist = []
@@ -16,16 +17,43 @@ def getFileList():
     filelist.sort()
     return filelist
 
+def isExistBeforeAndGetFlag(filename, contentBefore):
+    filename_tmp = ""
+    tmp_dict = ""
+    ret = False
+    for line in contentBefore:
+        tmp_dict = json.loads(line)
+        filename_tmp = tmp_dict["filename"]
+        if filename == filename_tmp:
+            ret = tmp_dict["flag"]
+    return ret
+
 def generateFlags(filelist):
-    tmp = ""
+    tmp_flag = ""
+    contentBefore = []
+    if not os.path.exists(FLAG_BAK_FILENAME):
+        os.popen("touch " + FLAG_BAK_FILENAME)
+
+    with open(FLAG_BAK_FILENAME, 'r') as f:
+        while 1:
+            line = f.readline()
+            if not line:
+                break
+            contentBefore.append(line)
+
     flags = []
-    if os.path.exists(FLAG_BAK_FILENAME):
-        os.remove(FLAG_BAK_FILENAME)
-    with open(FLAG_BAK_FILENAME, 'a') as f:
+    with open(FLAG_BAK_FILENAME, 'w') as f:
         for filename in filelist:
-            tmp = "flag{" + str(uuid.uuid4()) + "}"
-            f.write(filename + ": " + tmp + "\n")
-            flags.append(tmp)
+            tmp_flag = isExistBeforeAndGetFlag(filename, contentBefore)
+            if tmp_flag == False:
+                tmp_flag = "flag{" + str(uuid.uuid4()) + "}"
+            flag_dict = {}
+            flag_dict["filename"] = filename
+            flag_dict["flag"] = tmp_flag
+            flag_json = json.dumps(flag_dict)
+            print flag_json
+            f.write(flag_json + "\n")
+            flags.append(tmp_flag)
     return flags
 
 def generateXinetd(filelist):
@@ -110,12 +138,12 @@ def generateDockerCompose(length):
 
 def generateBinPort(filelist):
     port = PORT_LISTEN_START_FROM
-    tmp = "\n"
+    tmp = ""
     for filename in filelist:
         tmp += filename  + "'s port: " + str(port) + "\n"
         port = port + 1
     print tmp
-    with open(FLAG_BAK_FILENAME, 'a') as f:
+    with open(PORT_INFO_FILENAME, 'w') as f:
         f.write(tmp)
 
     
