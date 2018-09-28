@@ -63,12 +63,18 @@ def generateFlags(filelist):
     return flags
 
 def generateXinetd(filelist):
-    port = PORT_LISTEN_START_FROM
+    contentBefore = []
+    with open(FLAG_BAK_FILENAME, 'r') as f:
+        while 1:
+            line = f.readline()
+            if not line:
+                break
+            contentBefore.append(line)
     conf = ""
     uid = 1000
     for filename in filelist:
+        port = isExistBeforeGetFlagAndPort(filename, contentBefore)[1]
         conf += XINETD % (port, str(uid) + ":" + str(uid), filename, filename)
-        port = port + 1
         uid = uid + 1
     with open(XINETD_CONF_FILENAME, 'w') as f:
             f.write(conf)
