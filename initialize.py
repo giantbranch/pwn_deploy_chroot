@@ -17,7 +17,7 @@ def getFileList():
     filelist.sort()
     return filelist
 
-def isExistBeforeAndGetFlag(filename, contentBefore):
+def isExistBeforeGetFlagAndPort(filename, contentBefore):
     filename_tmp = ""
     tmp_dict = ""
     ret = False
@@ -25,7 +25,7 @@ def isExistBeforeAndGetFlag(filename, contentBefore):
         tmp_dict = json.loads(line)
         filename_tmp = tmp_dict["filename"]
         if filename == filename_tmp:
-            ret = tmp_dict["flag"]
+            ret = [tmp_dict["flag"], tmp_dict["port"]]
     return ret
 
 def generateFlags(filelist):
@@ -40,14 +40,20 @@ def generateFlags(filelist):
             if not line:
                 break
             contentBefore.append(line)
-
+    port = PORT_LISTEN_START_FROM + len(contentBefore)    
     flags = []
     with open(FLAG_BAK_FILENAME, 'w') as f:
         for filename in filelist:
-            tmp_flag = isExistBeforeAndGetFlag(filename, contentBefore)
-            if tmp_flag == False:
-                tmp_flag = "flag{" + str(uuid.uuid4()) + "}"
             flag_dict = {}
+            ret = isExistBeforeGetFlagAndPort(filename, contentBefore)
+            if ret == False:
+                tmp_flag = "flag{" + str(uuid.uuid4()) + "}"
+                flag_dict["port"] = port
+                port = port + 1
+            else:
+                tmp_flag = ret[0]
+                flag_dict["port"] = ret[1]
+
             flag_dict["filename"] = filename
             flag_dict["flag"] = tmp_flag
             flag_json = json.dumps(flag_dict)
@@ -136,20 +142,19 @@ def generateDockerCompose(length):
     with open("docker-compose.yml", 'w') as f:
         f.write(conf)
 
-def generateBinPort(filelist):
-    port = PORT_LISTEN_START_FROM
-    tmp = ""
-    for filename in filelist:
-        tmp += filename  + "'s port: " + str(port) + "\n"
-        port = port + 1
-    print tmp
-    with open(PORT_INFO_FILENAME, 'w') as f:
-        f.write(tmp)
-
+# def generateBinPort(filelist):
+#     port = PORT_LISTEN_START_FROM
+#     tmp = ""
+#     for filename in filelist:
+#         tmp += filename  + "'s port: " + str(port) + "\n"
+#         port = port + 1
+#     print tmp
+#     with open(PORT_INFO_FILENAME, 'w') as f:
+#         f.write(tmp)
     
 filelist = getFileList()
 flags = generateFlags(filelist)
-generateBinPort(filelist)
+# generateBinPort(filelist)
 generateXinetd(filelist)
 generateDockerfile(filelist, flags)
 generateDockerCompose(len(filelist))
