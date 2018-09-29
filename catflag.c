@@ -20,13 +20,13 @@ int main(int argc,char **argv)
             case 'c':
                 flag = 1;
                 // printf("option c: %s\n", optarg);
-                if (!strncmp(optarg,"sh", 2) || !strncmp(optarg,"/bin/sh", 7))
+                if (!strcmp(optarg,"sh") || !strcmp(optarg,"/bin/sh"))
                 {
                     printflag();
                 }else{
                     printf("================================================\n\n");
                     printf("Only support this commands: sh, /bin/sh\n");
-                    printf("So you must call system(\"sh\") or system(\"/bin/sh\")\n");
+                    printf("So you must call system(\"sh\") or system(\"/bin/sh\")\n\n");
                     printf("================================================\n\n");
                 }
                 break;
