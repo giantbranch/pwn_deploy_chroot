@@ -15,6 +15,8 @@ int main(int argc,char **argv)
 {
     int ch;
     int flag = 0;
+    // if you call system you go into while, because the source of system call :
+    // execl("/bin/sh", "sh", "-c", cmdstring, (char *)0);
     while((ch = getopt(argc, argv, "c:")) != -1) {
         switch(ch) {
             case 'c':
@@ -31,15 +33,19 @@ int main(int argc,char **argv)
                 }
                 break;
             case '?': // 输入未定义的选项, 都会将该选项的值变为 ?
-                printf("if you use execl, You can only call execl(\"/bin/sh\", \"/bin/sh\", \"-c\", \"/bin/sh\", 0) \n\n");
-                break;
             default:
-                printf("if you use execl, You can only call execl(\"/bin/sh\", \"/bin/sh\", \"-c\", \"/bin/sh\", 0) \n\n");
+                printf("Undefined parameter\n");
+                printf("Because I change /bin/sh,so if you get shell locally, please add issue on github: \nhttps://github.com/giantbranch/pwn_deploy_chroot\n\n");
         }
     }
-    if (flag == 0)
+    // if you use one_gadget,argc will be 1
+    if (argc == 1)
     {
-        printf("if you use execl, You can only call execl(\"/bin/sh\", \"/bin/sh\", \"-c\", \"/bin/sh\", 0) \n\n");
+        printflag();
+    }else if (flag == 0)
+    {
+        printf("Because I change /bin/sh,so if you use one_gadget or other technique to get shell locally, please add issue on github: \nhttps://github.com/giantbranch/pwn_deploy_chroot\n\n");
     }
     return 0;
 }
+
