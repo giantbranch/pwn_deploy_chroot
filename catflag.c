@@ -1,3 +1,4 @@
+//gcc -static -o catflag catflag.c
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -18,9 +19,9 @@ int main(int argc,char **argv)
     // if you call system you go into while, because the source of system call :
     // execl("/bin/sh", "sh", "-c", cmdstring, (char *)0);
     while((ch = getopt(argc, argv, "c:")) != -1) {
+        flag = 1;
         switch(ch) {
-            case 'c':
-                flag = 1;
+            case 'c':                
                 // printf("option c: %s\n", optarg);
                 if (!strcmp(optarg,"sh") || !strcmp(optarg,"/bin/sh"))
                 {
@@ -48,4 +49,3 @@ int main(int argc,char **argv)
     }
     return 0;
 }
-
