@@ -119,7 +119,8 @@ def generateDockerfile(filelist, flags):
     # ness_bin = '''cp /bin/sh /home/%s/bin && cp /bin/ls /home/%s/bin && cp /bin/cat /home/%s/bin'''
     copy_lib_bin_dev = "RUN "
     for x in xrange(0, len(filelist)):
-        copy_lib_bin_dev += "cp -R /lib* /home/" + filelist[x]  + " && "        
+        copy_lib_bin_dev += "cp -R /lib* /home/" + filelist[x]  + " && "
+        copy_lib_bin_dev += "cp -R /usr/lib* /home/" + filelist[x]  + " && "
         copy_lib_bin_dev += dev % (filelist[x], filelist[x], filelist[x], filelist[x], filelist[x], filelist[x])
         if x == len(filelist) - 1:
             # copy_lib_bin_dev += ness_bin % (filelist[x], filelist[x], filelist[x])
