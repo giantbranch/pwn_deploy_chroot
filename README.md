@@ -38,3 +38,12 @@ The port information of the pwn program is also inside the flags.txt.
 ## Reference
 
 https://github.com/Eadom/ctf_xinetd
+
+## Reward
+
+paypal: https://www.paypal.me/giantbranch
+
+![自愿打赏][1]
+
+
+  [1]: http://pic.giantbranch.cn/pic/1551450728861.jpg
