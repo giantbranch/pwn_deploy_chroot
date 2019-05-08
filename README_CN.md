@@ -35,6 +35,13 @@ pwn程序对应的端口信息也在flags.txt中
 
 https://github.com/Eadom/ctf_xinetd
 
+## 自愿打赏
 
+paypal: https://www.paypal.me/giantbranch
+
+![自愿打赏][1]
+
+
+  [1]: http://pic.giantbranch.cn/pic/1551450728861.jpg
 
 
