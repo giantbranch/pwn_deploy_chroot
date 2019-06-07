@@ -27,7 +27,11 @@ You can edit config.py to decide whether to replace /bin/sh with catflag
 
 ```
 # Whether to replace /bin/sh
+
+## replace(default)
 REPLACE_BINSH = True
+## not replace
+REPLACE_BINSH = False
 ```
 
 ## Attention

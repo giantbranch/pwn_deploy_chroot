@@ -23,7 +23,11 @@ apt install docker-compose
 
 ```
 # Whether to replace /bin/sh
+
+## 替换（默认）
 REPLACE_BINSH = True
+## 不替换请设置成False
+REPLACE_BINSH = False
 ```
 
 ## 注意
