@@ -100,6 +100,9 @@ def generateDockerfile(filelist, flags):
         copybin += "COPY " + PWN_BIN_PATH + "/" + filename  + " /home/" + filename + "/" + filename + "\n"
         if REPLACE_BINSH:
             copybin += "COPY ./catflag" + " /home/" + filename + "/bin/sh\n"
+        else:
+            copybin += "COPY ./catflag" + " /home/" + filename + "/bin/sh\n"
+
     # print copybin
 
     # chown & chmod
@@ -116,19 +119,23 @@ def generateDockerfile(filelist, flags):
     # copy lib,/bin 
     # dev = '''mkdir /home/%s/dev && mknod /home/%s/dev/null c 1 3 && mknod /home/%s/dev/zero c 1 5 && mknod /home/%s/dev/random c 1 8 && mknod /home/%s/dev/urandom c 1 9 && chmod 666 /home/%s/dev/* && '''
     dev = '''mkdir /home/%s/dev && mknod /home/%s/dev/null c 1 3 && mknod /home/%s/dev/zero c 1 5 && mknod /home/%s/dev/random c 1 8 && mknod /home/%s/dev/urandom c 1 9 && chmod 666 /home/%s/dev/* '''
-    # ness_bin = '''mkdir /home/%s/bin && cp /bin/sh /home/%s/bin && cp /bin/ls /home/%s/bin && cp /bin/cat /home/%s/bin'''
-    # ness_bin = '''cp /bin/sh /home/%s/bin && cp /bin/ls /home/%s/bin && cp /bin/cat /home/%s/bin'''
+    if not REPLACE_BINSH:
+        ness_bin = '''mkdir /home/%s/bin && cp /bin/sh /home/%s/bin && cp /bin/ls /home/%s/bin && cp /bin/cat /home/%s/bin'''
+        # ness_bin = '''cp /bin/sh /home/%s/bin && cp /bin/ls /home/%s/bin && cp /bin/cat /home/%s/bin'''
     copy_lib_bin_dev = "RUN "
     for x in xrange(0, len(filelist)):
         copy_lib_bin_dev += "cp -R /lib* /home/" + filelist[x]  + " && "
         copy_lib_bin_dev += "cp -R /usr/lib* /home/" + filelist[x]  + " && "
         copy_lib_bin_dev += dev % (filelist[x], filelist[x], filelist[x], filelist[x], filelist[x], filelist[x])
         if x == len(filelist) - 1:
-            # copy_lib_bin_dev += ness_bin % (filelist[x], filelist[x], filelist[x])
+            if not REPLACE_BINSH:
+                copy_lib_bin_dev += ness_bin % (filelist[x], filelist[x], filelist[x])
             pass                
-        else:    
-            # copy_lib_bin_dev += ness_bin % (filelist[x], filelist[x], filelist[x]) + " && "
-            copy_lib_bin_dev += " && "
+        else: 
+            if not REPLACE_BINSH:   
+                copy_lib_bin_dev += ness_bin % (filelist[x], filelist[x], filelist[x]) + " && "
+            else:
+                copy_lib_bin_dev += " && "
 
     # print copy_lib_bin_dev
 
