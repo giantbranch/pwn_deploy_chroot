@@ -19,6 +19,13 @@ apt install docker-compose
 3. docker-compose up --build -d 	# 请用root用户启动
 ```
 
+你可以编辑config.py决定是否用我的catflag程序去替换/bin/sh
+
+```
+# Whether to replace /bin/sh
+REPLACE_BINSH = True
+```
+
 ## 注意
 
 flag会由`initialize.py`生成，并写入flags.txt中

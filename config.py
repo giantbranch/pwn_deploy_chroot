@@ -5,6 +5,9 @@
 # @Link    : http://www.giantbranch.cn/
 # @tags : 
 
+# Whether to replace /bin/sh
+REPLACE_BINSH = True
+
 FLAG_BAK_FILENAME = "flags.txt"
 PORT_INFO_FILENAME = "ports.txt"
 PWN_BIN_PATH = "./bin"

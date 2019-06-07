@@ -98,7 +98,8 @@ def generateDockerfile(filelist, flags):
     copybin = ""
     for filename in filelist:
         copybin += "COPY " + PWN_BIN_PATH + "/" + filename  + " /home/" + filename + "/" + filename + "\n"
-        copybin += "COPY ./catflag" + " /home/" + filename + "/bin/sh\n"    
+        if REPLACE_BINSH:
+            copybin += "COPY ./catflag" + " /home/" + filename + "/bin/sh\n"
     # print copybin
 
     # chown & chmod
