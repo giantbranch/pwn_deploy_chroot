@@ -6,10 +6,9 @@
 
 [README_CN.md](https://github.com/giantbranch/pwn_deploy_chroot/blob/master/README_CN.md)
 
+详细部署示例
 
-[How to deploy many ctf pwn game safely and quickly](http://www.giantbranch.cn/2018/09/24/%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E5%BF%AB%E9%80%9F%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%9A%E9%81%93ctf%20pwn%E6%AF%94%E8%B5%9B%E9%A2%98%E7%9B%AE/)
-
-
+[如何安全快速地部署多道ctf pwn比赛题目 - How to deploy many ctf pwn game safely and quickly](http://www.giantbranch.cn/2018/09/24/%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E5%BF%AB%E9%80%9F%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%9A%E9%81%93ctf%20pwn%E6%AF%94%E8%B5%9B%E9%A2%98%E7%9B%AE/)
 
 ## Before
 
