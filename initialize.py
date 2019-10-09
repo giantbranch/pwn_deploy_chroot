@@ -40,7 +40,11 @@ def generateFlags(filelist):
             if not line:
                 break
             contentBefore.append(line)
-    port = PORT_LISTEN_START_FROM + len(contentBefore)    
+    # bin's num != flags.txt's linenum, empty the flags.txt
+    if len(filelist) != len(contentBefore):
+        os.popen("echo '' > " + FLAG_BAK_FILENAME)
+        contentBefore = []
+    port = PORT_LISTEN_START_FROM + len(contentBefore)
     flags = []
     with open(FLAG_BAK_FILENAME, 'w') as f:
         for filename in filelist:
