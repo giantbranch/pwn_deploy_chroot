@@ -6,7 +6,7 @@
 # @tags : 
 
 # Whether to replace /bin/sh
-REPLACE_BINSH = True
+REPLACE_BINSH = False
 
 FLAG_BAK_FILENAME = "flags.txt"
 PORT_INFO_FILENAME = "ports.txt"

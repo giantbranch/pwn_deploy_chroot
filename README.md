@@ -36,9 +36,9 @@ You can edit config.py to decide whether to replace /bin/sh with catflag
 ```
 # Whether to replace /bin/sh
 
-## replace(default)
+## replace
 REPLACE_BINSH = True
-## not replace
+## not replace(default)
 REPLACE_BINSH = False
 ```
 
