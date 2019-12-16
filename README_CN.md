@@ -30,7 +30,7 @@ apt install docker-compose
 
 ## 替换
 REPLACE_BINSH = True
-## 不替换请设置成False（默认）
+## 不替换（默认）
 REPLACE_BINSH = False
 ```
 

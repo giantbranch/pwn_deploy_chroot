@@ -30,9 +30,9 @@ https://github.com/giantbranch/pwn_deploy_chroot/issues/4
 ```
 # Whether to replace /bin/sh
 
-## replace(default)
+## replace
 REPLACE_BINSH = True
-## not replace
+## not replace(default)
 REPLACE_BINSH = False
 ```
 
