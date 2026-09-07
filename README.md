@@ -19,6 +19,8 @@
 ```
 # Install the latest version docker
 curl -s https://get.docker.com/ | sh
+# for CN
+curl -fsSL https://get.docker.com | sudo sh -s -- --mirror Aliyun
 # Install docker compose
 apt install docker-compose
 ```
